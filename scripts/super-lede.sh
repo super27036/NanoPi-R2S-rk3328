@@ -28,7 +28,7 @@ svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/luci-app-irqbalance
 # Add luci-app-passwall
 mkdir passwall passwall-packages passwall2
 git clone https://github.com/xiaorouji/openwrt-passwall passwall
-git clone https://github.com/xiaorouji/openwrt-passwall2 passwall2
+# git clone https://github.com/xiaorouji/openwrt-passwall2 passwall2
 git clone https://github.com/xiaorouji/openwrt-passwall-packages passwall-packages
 
 # Add luci-app-ssr-plus
@@ -102,9 +102,6 @@ rm -rf ../../customfeeds/packages/multimedia/aliyundrive-webdav
 svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
 svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
 popd
-
-# Add aliddns
-git clone https://github.com/honwen/luci-app-aliddns.git
 
 # Add Pandownload
 pushd package/lean
