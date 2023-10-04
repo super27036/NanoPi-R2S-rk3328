@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: NanoPi-R2S-lede-slim
+name: NanoPi-R2S-newlede-slim
 
 on: 
   repository_dispatch:
@@ -15,12 +15,11 @@ on:
   schedule:
     - cron: '0 5 * * 1' # china time 1pm every Monday
 
-
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/lean/super.config
-  DIY_SH: scripts/super-lede.sh
+  DIY_SH: scripts/super-newlede.sh
   KMODS_IN_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -28,7 +27,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-22.04
-    if: github.repository == 'super27035/NanoPi-R2S-rk3328'
+    if: github.repository == 'super27036/NanoPi-R2S-rk3328'
     permissions:
       contents: write
       packages: write
@@ -48,8 +47,7 @@ jobs:
         # this might remove tools that are actually needed,
         # if set to "true" but frees about 6 GB
         tool-cache: true
-        # tool-cache: true is good
-
+        
         # all of these default to true, but feel free to set to
         # "false" if necessary for your workflow
         codeql-images: true
@@ -58,7 +56,6 @@ jobs:
         dotnet: true
         haskell: true
         large-packages: false
-        # not good
         docker-images: true
         swap-storage: true
         
@@ -186,11 +183,11 @@ jobs:
         rm -rf openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-rootfs.tar.gz
         rm -rf config.buildinfo
         rm -rf packages-server.zip
-        mv openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz lede-slim-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
-        mv openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz lede-slim-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
+        mv openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz newlede-slim-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
+        mv openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz newlede-slim-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
         popd
         make checksum
-        mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/lede-slim-sha256sums
+        mv bin/targets/rockchip/armv8/sha256sums bin/targets/rockchip/armv8/newlede-slim-sha256sums
         echo "GENERATE_STATUS=success" >> $GITHUB_OUTPUT
     - name: Generate release tag
       id: tag
